@@ -1,7 +1,14 @@
+import { useEffect } from "react";
+
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
+import { api } from "./services/api";
 
 const App: React.FC = () => {
+  useEffect(() => {
+    api.get("transactions").then((res) => console.log(res.data));
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-200">
       <div className="px-4 bg-blue-900 h-[20rem]">
@@ -9,7 +16,6 @@ const App: React.FC = () => {
           <header className="py-6">
             <Header />
           </header>
-
           <section>
             <Dashboard />
           </section>
