@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import Modal from "react-modal";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import { api } from "./services/api";
@@ -34,3 +34,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+Modal.setAppElement("#yourAppElement");
