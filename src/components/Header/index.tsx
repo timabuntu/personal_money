@@ -1,6 +1,10 @@
 import logoImg from "../../assets/logo.png";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onModalOpen: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onModalOpen }) => {
   return (
     <header className="flex flex-col justify-between">
       <div className="flex items-center gap-3">
@@ -9,6 +13,7 @@ const Header: React.FC = () => {
       </div>
       <button
         type="button"
+        onClick={onModalOpen}
         className="hidden px-6 py-3 mt-4 font-semibold bg-blue-500 rounded-lg text-slate-100"
       >
         Nova Transação
