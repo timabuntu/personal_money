@@ -4,6 +4,24 @@ import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 import { api } from "./services/api";
 
+const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    borderRadius: "8px",
+    backgroundColor: "rgb(248,250, 252)",
+  },
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    // position: "fixed",
+    border: "2px solid red",
+  },
+};
+
 Modal.setAppElement("#root");
 
 const App: React.FC = () => {
@@ -40,10 +58,10 @@ const App: React.FC = () => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}
-        className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center border-4 border-red-500 bg-gray-900/30"
+        style={modalStyles}
       >
-        <form className="w-full max-w-3xl p-8 bg-green-200">
-          <h2 className="text-xl font-bold text-gray-900">
+        <form className="flex flex-col max-w-3xl p-4">
+          <h2 className="text-xl font-bold text-gray-800">
             Cadastrar transação
           </h2>
           <input type="text" placeholder="Título" />
