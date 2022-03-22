@@ -1,24 +1,29 @@
 import { useEffect, useState } from "react";
+
+import { api } from "./services/api";
 import Modal from "react-modal";
+
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
-import { api } from "./services/api";
+
+import closeImg from "./assets/close.svg";
 
 const modalStyles = {
   content: {
+    padding: "36px",
+    width: "100%",
+    maxWidth: "576px",
     top: "50%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    borderRadius: "8px",
+    borderRadius: "16px",
     backgroundColor: "rgb(248,250, 252)",
   },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    // position: "fixed",
-    border: "2px solid red",
   },
 };
 
@@ -60,14 +65,41 @@ const App: React.FC = () => {
         onRequestClose={handleModalClose}
         style={modalStyles}
       >
-        <form className="flex flex-col max-w-3xl p-4">
-          <h2 className="text-xl font-bold text-gray-800">
-            Cadastrar transação
-          </h2>
-          <input type="text" placeholder="Título" />
-          <input type="number" placeholder="Valor" />
-          <input type="text" placeholder="Categoria" />
-          <button type="submit">Cadastrar</button>
+        <form className="flex flex-col">
+          <header className="flex justify-between">
+            <h2 className="py-4 text-xl font-bold text-gray-700 ">
+              Cadastrar transação
+            </h2>
+            <button type="button" className="-mt-16 -mr-6">
+              <img
+                src={closeImg}
+                alt="Botão para fechar o modal"
+                onClick={handleModalClose}
+                className="p-4 transition hover:brightness-110"
+              />
+            </button>
+          </header>
+          <input
+            type="text"
+            placeholder="Título"
+            className="px-4 py-4 text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
+          />
+          <input
+            type="text"
+            placeholder="Valor"
+            className="px-4 py-4 mt-4 text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400g"
+          />
+          <input
+            type="text"
+            placeholder="Categoria"
+            className="px-4 py-4 mt-4 text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
+          />
+          <button
+            type="submit"
+            className="py-4 mt-4 font-semibold transition rounded-lg text-slate-50 bg-emerald-500 hover:bg-emerald-600"
+          >
+            Cadastrar
+          </button>
         </form>
       </Modal>
     </div>
