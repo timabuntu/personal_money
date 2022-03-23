@@ -96,14 +96,14 @@ const App: React.FC = () => {
           <div className="flex justify-between gap-4 mt-4">
             <div className="flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400">
               <img src={incomeImg} alt="Entrada" className="w-6 h-6" />
-              <button type="button" className="text-sm">
+              <button type="button" className="text-sm text-gray-700">
                 Entrada
               </button>
             </div>
 
             <div className="flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400">
               <img src={outcomeImg} alt="Saída" className="w-6 h-6" />
-              <button className="text-sm ">Saída</button>
+              <button className="text-sm text-gray-700 ">Saída</button>
             </div>
           </div>
 
