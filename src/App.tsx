@@ -7,6 +7,8 @@ import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 
 import closeImg from "./assets/close.svg";
+import incomeImg from "./assets/income.svg";
+import outcomeImg from "./assets/outcome.svg";
 
 const modalStyles = {
   content: {
@@ -89,6 +91,19 @@ const App: React.FC = () => {
             placeholder="Valor"
             className="px-4 py-4 mt-4 text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400g"
           />
+          <div className="flex justify-between gap-4 mt-4">
+            <button
+              type="button"
+              className="flex items-center justify-center flex-1 gap-8 px-4 py-4 bg-white rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400"
+            >
+              <img src={incomeImg} alt="" className="" />
+              Entrada
+            </button>
+            <button className="flex items-center justify-center flex-1 gap-8 px-4 py-4 bg-white rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400">
+              <img src={outcomeImg} alt="" className="" />
+              Saída
+            </button>
+          </div>
           <input
             type="text"
             placeholder="Categoria"
