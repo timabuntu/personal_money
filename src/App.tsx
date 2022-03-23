@@ -7,6 +7,8 @@ import Dashboard from "./components/Dashboard";
 import Header from "./components/Header";
 
 import closeImg from "./assets/close.svg";
+import incomeImg from "./assets/income.svg";
+import outcomeImg from "./assets/outcome.svg";
 
 const modalStyles = {
   content: {
@@ -82,21 +84,38 @@ const App: React.FC = () => {
           <input
             type="text"
             placeholder="Título"
-            className="px-4 py-4 text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
+            className="px-4 py-4 text-sm text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
           />
+
           <input
             type="text"
             placeholder="Valor"
-            className="px-4 py-4 mt-4 text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400g"
+            className="px-4 py-4 mt-4 text-sm text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400g"
           />
+
+          <div className="flex justify-between gap-4 mt-4">
+            <div className="flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400">
+              <img src={incomeImg} alt="Entrada" className="w-6 h-6" />
+              <button type="button" className="text-sm text-gray-700">
+                Entrada
+              </button>
+            </div>
+
+            <div className="flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400">
+              <img src={outcomeImg} alt="Saída" className="w-6 h-6" />
+              <button className="text-sm text-gray-700 ">Saída</button>
+            </div>
+          </div>
+
           <input
             type="text"
             placeholder="Categoria"
-            className="px-4 py-4 mt-4 text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
+            className="px-4 py-4 mt-4 text-sm text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
           />
+
           <button
             type="submit"
-            className="py-4 mt-4 font-semibold transition rounded-lg text-slate-50 bg-emerald-500 hover:bg-emerald-600"
+            className="py-4 mt-4 text-sm font-semibold transition rounded-lg text-slate-50 bg-emerald-500 hover:bg-emerald-600"
           >
             Cadastrar
           </button>
