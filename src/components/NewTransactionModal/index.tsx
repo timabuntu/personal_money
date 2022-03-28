@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Modal from "react-modal";
 
 import closeImg from "../../assets/close.svg";
@@ -33,17 +33,32 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   modalIsOpen,
 }) => {
   const [transactionType, setTransactionType] = useState("deposit");
+  const [title, setTitle] = useState("");
+  const [value, setValue] = useState(0);
+  const [category, setCategory] = useState("");
+
+  function handleCreateNewTransaction(event: FormEvent) {
+    event.preventDefault();
+
+    console.log({
+      title,
+      value,
+      transactionType,
+      category,
+    });
+  }
 
   useEffect(() => {
     setTransactionType("deposit");
   }, [modalIsOpen]);
+
   return (
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={handleModalClose}
       style={modalStyles}
     >
-      <form className="flex flex-col">
+      <form className="flex flex-col" onSubmit={handleCreateNewTransaction}>
         <header className="flex justify-between">
           <h2 className="py-4 text-xl font-bold text-gray-700 ">
             Cadastrar transação
@@ -60,11 +75,15 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
         <input
           type="text"
           placeholder="Título"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="px-4 py-4 text-sm text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
         />
 
         <input
           type="text"
+          value={value}
+          onChange={(e) => setValue(Number(e.target.value))}
           placeholder="Valor"
           className="px-4 py-4 mt-4 text-sm text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400g"
         />
@@ -104,6 +123,10 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
         <input
           type="text"
           placeholder="Categoria"
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
           className="px-4 py-4 mt-4 text-sm text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400"
         />
 
