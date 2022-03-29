@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import closeImg from "../../assets/close.svg";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
+import { api } from "../../services/api";
 
 interface NewTransactionModalProps {
   modalIsOpen: boolean;
@@ -40,12 +41,14 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    console.log({
+    const data = {
       title,
       value,
       transactionType,
       category,
-    });
+    };
+
+    api.post("/transactions", data);
   }
 
   useEffect(() => {
