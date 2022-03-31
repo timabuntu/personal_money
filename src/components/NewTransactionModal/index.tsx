@@ -1,10 +1,10 @@
-import { FormEvent, useEffect, useState } from "react";
-import Modal from "react-modal";
+import { FormEvent, useEffect, useState } from 'react';
+import Modal from 'react-modal';
 
-import closeImg from "../../assets/close.svg";
-import incomeImg from "../../assets/income.svg";
-import outcomeImg from "../../assets/outcome.svg";
-import { api } from "../../services/api";
+import closeImg from '../../assets/close.svg';
+import incomeImg from '../../assets/income.svg';
+import outcomeImg from '../../assets/outcome.svg';
+import { api } from '../../services/api';
 
 interface NewTransactionModalProps {
   modalIsOpen: boolean;
@@ -13,30 +13,30 @@ interface NewTransactionModalProps {
 
 const modalStyles = {
   content: {
-    padding: "36px",
-    width: "100%",
-    maxWidth: "576px",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    borderRadius: "16px",
-    backgroundColor: "rgb(248,250, 252)",
+    padding: '36px',
+    width: '100%',
+    maxWidth: '576px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '16px',
+    backgroundColor: 'rgb(248,250, 252)',
   },
   overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
 };
 const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   handleModalClose,
   modalIsOpen,
 }) => {
-  const [transactionType, setTransactionType] = useState("deposit");
-  const [title, setTitle] = useState("");
+  const [transactionType, setTransactionType] = useState('deposit');
+  const [title, setTitle] = useState('');
   const [value, setValue] = useState(0);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState('');
 
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
@@ -48,11 +48,11 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
       category,
     };
 
-    api.post("/transactions", data);
+    api.post('/transactions', data);
   }
 
   useEffect(() => {
-    setTransactionType("deposit");
+    setTransactionType('deposit');
   }, [modalIsOpen]);
 
   return (
@@ -94,13 +94,13 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
         <div className="flex justify-between gap-4 mt-4">
           <button
             onClick={() => {
-              setTransactionType("deposit");
+              setTransactionType('deposit');
             }}
             type="button"
             className={
-              transactionType === "deposit"
-                ? "flex justify-center flex-1 gap-4 px-4 py-4 bg-green-100 rounded-lg cursor-pointer outline outline-1 outline-green-300 focus:outline-none focus:ring-1 focus:ring-green-400"
-                : "flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400"
+              transactionType === 'deposit'
+                ? 'flex justify-center flex-1 gap-4 px-4 py-4 bg-green-100 rounded-lg cursor-pointer outline outline-1 outline-green-300 focus:outline-none focus:ring-1 focus:ring-green-400'
+                : 'flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400'
             }
           >
             <img src={incomeImg} alt="Entrada" className="w-6 h-6" />
@@ -110,12 +110,12 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
           <button
             type="button"
             onClick={() => {
-              setTransactionType("withdraw");
+              setTransactionType('withdraw');
             }}
             className={
-              transactionType === "withdraw"
-                ? "flex justify-center flex-1 gap-4 px-4 py-4 bg-red-100 rounded-lg cursor-pointer outline outline-1 outline-red-300 focus:outline-none focus:ring-1 focus:ring-red-400"
-                : "flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400"
+              transactionType === 'withdraw'
+                ? 'flex justify-center flex-1 gap-4 px-4 py-4 bg-red-100 rounded-lg cursor-pointer outline outline-1 outline-red-300 focus:outline-none focus:ring-1 focus:ring-red-400'
+                : 'flex justify-center flex-1 gap-4 px-4 py-4 bg-white rounded-lg cursor-pointer outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400'
             }
           >
             <img src={outcomeImg} alt="Saída" className="w-6 h-6" />
