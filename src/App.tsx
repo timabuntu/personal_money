@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from 'react';
 
-import { api } from "./services/api";
-import Modal from "react-modal";
+import Modal from 'react-modal';
 
-import Dashboard from "./components/Dashboard";
-import Header from "./components/Header";
-import NewTransactionModal from "./components/NewTransactionModal";
+import Dashboard from './components/Dashboard';
+import Header from './components/Header';
+import NewTransactionModal from './components/NewTransactionModal';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const App: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -15,10 +14,6 @@ const App: React.FC = () => {
   const handleModalOpen = () => setModalIsOpen(true);
 
   const handleModalClose = () => setModalIsOpen(false);
-
-  useEffect(() => {
-    api.get("transactions").then((res) => console.log(res.data));
-  }, []);
 
   return (
     <div className="min-h-screen bg-slate-200">

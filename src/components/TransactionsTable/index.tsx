@@ -1,4 +1,24 @@
+import { useEffect, useState } from 'react';
+import { api } from '../../services/api';
+
+interface Transaction {
+  id: number;
+  title: string;
+  amount: number;
+  type: string;
+  category: string;
+  createdAt: string;
+}
+
 const TransactionsTable: React.FC = () => {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  useEffect(() => {
+    api
+      .get('transactions')
+      .then((res) => setTransactions(res.data.transactions));
+  }, []);
+
   return (
     <section>
       <header className="grid grid-cols-4 px-4 py-3 text-sm text-gray-400 ">
@@ -16,94 +36,35 @@ const TransactionsTable: React.FC = () => {
         </div>
       </header>
 
-      <div className="grid grid-cols-4 p-4 mt-2 text-sm rounded-md bg-slate-50">
-        <div>
-          <span className="text-gray-700">Salário</span>
-        </div>
-        <div>
-          <span className="text-green-500">R$ 4.000,00</span>
-        </div>
-        <div>
-          <span className="text-gray-400">Pagamento</span>
-        </div>
-        <div>
-          <span className="text-gray-400">07/03/2022</span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-4 p-4 mt-2 text-sm rounded-md bg-slate-50">
-        <div>
-          <span className="text-gray-700">Aluguel</span>
-        </div>
-        <div>
-          <span className="text-red-500">R$ 1.200,00</span>
-        </div>
-        <div>
-          <span className="text-gray-400">Moradia</span>
-        </div>
-        <div>
-          <span className="text-gray-400">10/03/2022</span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-4 p-4 mt-2 text-sm rounded-md bg-slate-50">
-        <div>
-          <span className="text-gray-700">Pizza</span>
-        </div>
-        <div>
-          <span className="text-red-500">R$ 70,00</span>
-        </div>
-        <div>
-          <span className="text-gray-400">Gordice</span>
-        </div>
-        <div>
-          <span className="text-gray-400">11/03/2022</span>
-        </div>
-      </div>
-      <div className="grid grid-cols-4 p-4 mt-2 text-sm rounded-md bg-slate-50">
-        <div>
-          <span className="text-gray-700">Salário</span>
-        </div>
-        <div>
-          <span className="text-green-500">R$ 4.000,00</span>
-        </div>
-        <div>
-          <span className="text-gray-400">Pagamento</span>
-        </div>
-        <div>
-          <span className="text-gray-400">07/03/2022</span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-4 p-4 mt-2 text-sm rounded-md bg-slate-50">
-        <div>
-          <span className="text-gray-700">Aluguel</span>
-        </div>
-        <div>
-          <span className="text-red-500">R$ 1.200,00</span>
-        </div>
-        <div>
-          <span className="text-gray-400">Moradia</span>
-        </div>
-        <div>
-          <span className="text-gray-400">10/03/2022</span>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-4 p-4 mt-2 text-sm rounded-md bg-slate-50">
-        <div>
-          <span className="text-gray-700">Pizza</span>
-        </div>
-        <div>
-          <span className="text-red-500">R$ 70,00</span>
-        </div>
-        <div>
-          <span className="text-gray-400">Gordice</span>
-        </div>
-        <div>
-          <span className="text-gray-400">11/03/2022</span>
-        </div>
-      </div>
+      {transactions.map((transaction) => {
+        return (
+          <div
+            key={transaction.id}
+            className="grid grid-cols-4 p-4 mt-2 text-sm rounded-md bg-slate-50"
+          >
+            <div>
+              <span className="text-gray-700">{transaction.title}</span>
+            </div>
+            <div>
+              <span
+                className={
+                  transaction.type === 'deposit'
+                    ? 'text-green-400'
+                    : 'text-red-400'
+                }
+              >
+                R$ {transaction.amount},00
+              </span>
+            </div>
+            <div>
+              <span className="text-gray-400">{transaction.category}</span>
+            </div>
+            <div>
+              <span className="text-gray-400">{transaction.createdAt}</span>
+            </div>
+          </div>
+        );
+      })}
     </section>
   );
 };
