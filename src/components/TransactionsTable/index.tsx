@@ -63,17 +63,25 @@ const TransactionsTable: React.FC<ITransactionsTableProps> = ({
                 className={
                   transaction.transactionType === 'deposit'
                     ? 'text-green-400'
-                    : 'text-red-400'
+                    : 'text-red-400 -ml-2'
                 }
               >
-                R$ {transaction.value},00
+                {transaction.transactionType === 'deposit' ? `` : `-`}
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(transaction.value)}
               </span>
             </div>
             <div>
               <span className="text-gray-400">{transaction.category}</span>
             </div>
             <div>
-              <span className="text-gray-400">{transaction.createdAt}</span>
+              <span className="text-gray-400">
+                {new Intl.DateTimeFormat('pt-BR').format(
+                  new Date(transaction.createdAt)
+                )}
+              </span>
             </div>
           </div>
         );
