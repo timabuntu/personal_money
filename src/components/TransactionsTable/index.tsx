@@ -10,18 +10,32 @@ interface Transaction {
   createdAt: string;
 }
 
-const TransactionsTable: React.FC = () => {
+interface ITransactionsTableProps {
+  modalIsOpen: boolean;
+}
+
+const TransactionsTable: React.FC<ITransactionsTableProps> = ({
+  modalIsOpen,
+}) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
+  const handleGetTransactions = async () => {
+    const response = await api.get('transactions');
+
+    if (response) {
+      setTransactions(response.data.transactions);
+    }
+  };
+
   useEffect(() => {
-    api
-      .get('transactions')
-      .then((res) => setTransactions(res.data.transactions));
-  }, []);
+    if (!modalIsOpen) {
+      handleGetTransactions();
+    }
+  }, [modalIsOpen]);
 
   return (
     <section>
-      <header className="grid grid-cols-4 px-4 py-3 text-sm text-gray-400 ">
+      <header className="grid grid-cols-4 px-4 py-3 text-sm text-gray-400">
         <div>
           <span>Titulo</span>
         </div>

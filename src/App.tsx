@@ -17,12 +17,12 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-200">
-      <main className="">
+      <main>
         <header className="px-4 py-6 bg-blue-800 h-80">
           <Header onModalOpen={handleModalOpen} />
         </header>
         <section className="px-4 -mt-[15rem]">
-          <Dashboard />
+          <Dashboard modalIsOpen={modalIsOpen} />
         </section>
       </main>
 
@@ -35,10 +35,12 @@ const App: React.FC = () => {
           +
         </span>
       </button>
-      <NewTransactionModal
-        handleModalClose={handleModalClose}
-        modalIsOpen={modalIsOpen}
-      />
+      {modalIsOpen && (
+        <NewTransactionModal
+          handleModalClose={handleModalClose}
+          modalIsOpen={modalIsOpen}
+        />
+      )}
     </div>
   );
 };
