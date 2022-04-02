@@ -38,7 +38,9 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   const [value, setValue] = useState(0);
   const [category, setCategory] = useState('');
 
-  function handleCreateNewTransaction(event: FormEvent) {
+  async function handleCreateNewTransaction(event: FormEvent) {
+    // console.log('data', event);
+
     event.preventDefault();
 
     const data = {
@@ -46,9 +48,14 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
       value,
       transactionType,
       category,
+      createdAt: new Date(),
     };
 
-    api.post('/transactions', data);
+    const response = await api.post('/transactions', data);
+
+    console.log('response', response);
+
+    handleModalClose();
   }
 
   useEffect(() => {

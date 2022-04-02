@@ -4,24 +4,38 @@ import { api } from '../../services/api';
 interface Transaction {
   id: number;
   title: string;
-  amount: number;
-  type: string;
+  value: number;
+  transactionType: string;
   category: string;
   createdAt: string;
 }
 
-const TransactionsTable: React.FC = () => {
+interface ITransactionsTableProps {
+  modalIsOpen: boolean;
+}
+
+const TransactionsTable: React.FC<ITransactionsTableProps> = ({
+  modalIsOpen,
+}) => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
+  const handleGetTransactions = async () => {
+    const response = await api.get('transactions');
+
+    if (response) {
+      setTransactions(response.data.transactions);
+    }
+  };
+
   useEffect(() => {
-    api
-      .get('transactions')
-      .then((res) => setTransactions(res.data.transactions));
-  }, []);
+    if (!modalIsOpen) {
+      handleGetTransactions();
+    }
+  }, [modalIsOpen]);
 
   return (
     <section>
-      <header className="grid grid-cols-4 px-4 py-3 text-sm text-gray-400 ">
+      <header className="grid grid-cols-4 px-4 py-3 text-sm text-gray-400">
         <div>
           <span>Titulo</span>
         </div>
@@ -35,7 +49,6 @@ const TransactionsTable: React.FC = () => {
           <span>Data</span>
         </div>
       </header>
-
       {transactions.map((transaction) => {
         return (
           <div
@@ -48,19 +61,27 @@ const TransactionsTable: React.FC = () => {
             <div>
               <span
                 className={
-                  transaction.type === 'deposit'
+                  transaction.transactionType === 'deposit'
                     ? 'text-green-400'
-                    : 'text-red-400'
+                    : 'text-red-400 -ml-2'
                 }
               >
-                R$ {transaction.amount},00
+                {transaction.transactionType === 'deposit' ? `` : `-`}
+                {new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(transaction.value)}
               </span>
             </div>
             <div>
               <span className="text-gray-400">{transaction.category}</span>
             </div>
             <div>
-              <span className="text-gray-400">{transaction.createdAt}</span>
+              <span className="text-gray-400">
+                {new Intl.DateTimeFormat('pt-BR').format(
+                  new Date(transaction.createdAt)
+                )}
+              </span>
             </div>
           </div>
         );
