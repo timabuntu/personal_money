@@ -4,8 +4,8 @@ import { api } from '../../services/api';
 interface Transaction {
   id: number;
   title: string;
-  amount: number;
-  type: string;
+  value: number;
+  transactionType: string;
   category: string;
   createdAt: string;
 }
@@ -49,7 +49,6 @@ const TransactionsTable: React.FC<ITransactionsTableProps> = ({
           <span>Data</span>
         </div>
       </header>
-
       {transactions.map((transaction) => {
         return (
           <div
@@ -62,12 +61,12 @@ const TransactionsTable: React.FC<ITransactionsTableProps> = ({
             <div>
               <span
                 className={
-                  transaction.type === 'deposit'
+                  transaction.transactionType === 'deposit'
                     ? 'text-green-400'
                     : 'text-red-400'
                 }
               >
-                R$ {transaction.amount},00
+                R$ {transaction.value},00
               </span>
             </div>
             <div>
