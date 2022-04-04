@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import totalImg from '../../assets/total.svg';
+import { TransactionsContext } from '../TransactionsContext';
 
 const Summary: React.FC = () => {
+  const data = useContext(TransactionsContext);
+
   return (
     <div className="flex flex-col justify-between gap-4">
       <div className="flex flex-col p-4 bg-white rounded-lg">
