@@ -13,22 +13,22 @@ createServer({
   seeds(server) {
     server.db.loadData({
       transactions: [
-        /*  {
+        {
           id: 1,
           title: 'Freelance de website',
-          type: 'deposit',
+          transactionType: 'deposit',
           category: 'Dev',
-          amount: 5000,
+          value: 5000,
           createdAt: new Date('2022-03-31 09:45:00'),
         },
         {
           id: 2,
           title: 'Aluguel',
-          type: 'withdraw',
+          transactionType: 'withdraw',
           category: 'Moradia',
-          amount: 1000,
+          value: 1000,
           createdAt: new Date('2022-03-31 10:53:00'),
-        }, */
+        },
       ],
     });
   },

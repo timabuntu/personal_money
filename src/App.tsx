@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import NewTransactionModal from './components/NewTransactionModal';
-import { TransactionsContext } from './components/TransactionsContext';
+import { TransactionsProvider } from './TransactionsContext';
 
 Modal.setAppElement('#root');
 
@@ -17,7 +17,7 @@ const App: React.FC = () => {
   const handleModalClose = () => setModalIsOpen(false);
 
   return (
-    <TransactionsContext.Provider value={[]}>
+    <TransactionsProvider>
       <div className="min-h-screen bg-slate-200">
         <main>
           <header className="px-4 py-6 bg-blue-800 h-80">
@@ -44,7 +44,7 @@ const App: React.FC = () => {
           />
         )}
       </div>
-    </TransactionsContext.Provider>
+    </TransactionsProvider>
   );
 };
 

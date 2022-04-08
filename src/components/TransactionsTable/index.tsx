@@ -1,41 +1,24 @@
 import { useContext, useEffect, useState } from 'react';
 import { api } from '../../services/api';
-import { TransactionsContext } from '../TransactionsContext';
-
-interface Transaction {
-  id: number;
-  title: string;
-  value: number;
-  transactionType: string;
-  category: string;
-  createdAt: string;
-}
+import { TransactionsContext } from '../../TransactionsContext';
 
 interface ITransactionsTableProps {
   modalIsOpen: boolean;
 }
 
-const TransactionsTable: React.FC<ITransactionsTableProps> = ({
-  modalIsOpen,
-}) => {
-  const data = useContext(TransactionsContext);
+const TransactionsTable: React.FC<ITransactionsTableProps> = (
+  {
+    /* modalIsOpen, */
+  }
+) => {
+  const transactions = useContext(TransactionsContext);
 
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  const handleGetTransactions = async () => {
-    const response = await api.get('transactions');
-
-    if (response) {
-      setTransactions(response.data.transactions);
-    }
-  };
-
-  useEffect(() => {
+  /*   useEffect(() => {
     if (!modalIsOpen) {
       handleGetTransactions();
     }
   }, [modalIsOpen]);
-
+ */
   return (
     <section>
       <header className="grid grid-cols-4 px-4 py-3 text-sm text-gray-400">
