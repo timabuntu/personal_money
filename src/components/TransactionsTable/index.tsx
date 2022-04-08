@@ -1,24 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { useContext } from 'react';
 import { TransactionsContext } from '../../TransactionsContext';
 
 interface ITransactionsTableProps {
   modalIsOpen: boolean;
 }
 
-const TransactionsTable: React.FC<ITransactionsTableProps> = (
-  {
-    /* modalIsOpen, */
-  }
-) => {
+const TransactionsTable: React.FC<ITransactionsTableProps> = () => {
   const transactions = useContext(TransactionsContext);
 
-  /*   useEffect(() => {
-    if (!modalIsOpen) {
-      handleGetTransactions();
-    }
-  }, [modalIsOpen]);
- */
   return (
     <section>
       <header className="grid grid-cols-4 px-4 py-3 text-sm text-gray-400">

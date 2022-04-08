@@ -8,6 +8,8 @@
 # editor
 .vscode
 .tool-versions
+.github
+.vscode
 
 # testing
 /coverage
