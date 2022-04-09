@@ -6,7 +6,7 @@ interface ITransactionsTableProps {
 }
 
 const TransactionsTable: React.FC<ITransactionsTableProps> = () => {
-  const transactions = useContext(TransactionsContext);
+  const { transactions } = useContext(TransactionsContext);
 
   return (
     <section>
