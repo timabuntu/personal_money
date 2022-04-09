@@ -5,7 +5,7 @@ import totalImg from '../../assets/total.svg';
 import { TransactionsContext } from '../../TransactionsContext';
 
 const Summary: React.FC = () => {
-  const transactions = useContext(TransactionsContext);
+  const { transactions } = useContext(TransactionsContext);
 
   console.log(transactions);
 
