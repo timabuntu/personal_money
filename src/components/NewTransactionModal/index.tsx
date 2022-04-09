@@ -1,6 +1,5 @@
 import { FormEvent, useEffect, useState, useContext } from 'react';
 import { TransactionsContext } from '../../TransactionsContext';
-import { api } from '../../services/api';
 
 import Modal from 'react-modal';
 
@@ -45,7 +44,7 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    createTransaction({
+    await createTransaction({
       title,
       value,
       transactionType,
