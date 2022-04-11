@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { TransactionsContext } from '../../TransactionsContext';
+import { useTransactions } from '../../hooks/useTransactions';
 
 interface ITransactionsTableProps {
   modalIsOpen: boolean;
 }
 
 const TransactionsTable: React.FC<ITransactionsTableProps> = () => {
-  const { transactions } = useContext(TransactionsContext);
+  const { transactions } = useTransactions();
 
   return (
     <section>
