@@ -1,11 +1,11 @@
-import { FormEvent, useEffect, useState, useContext } from 'react';
-import { TransactionsContext } from '../../TransactionsContext';
+import { FormEvent, useEffect, useState } from 'react';
 
 import Modal from 'react-modal';
 
 import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
+import { useTransactions } from '../../hooks/useTransactions';
 
 interface NewTransactionModalProps {
   modalIsOpen: boolean;
@@ -34,11 +34,11 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
   handleModalClose,
   modalIsOpen,
 }) => {
-  const { createTransaction } = useContext(TransactionsContext);
+  const { createTransaction } = useTransactions();
 
   const [transactionType, setTransactionType] = useState('deposit');
   const [title, setTitle] = useState('');
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('');
   const [category, setCategory] = useState('');
 
   async function handleCreateNewTransaction(event: FormEvent) {
@@ -46,7 +46,7 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
 
     await createTransaction({
       title,
-      value,
+      value: Number(value),
       transactionType,
       category,
     });
@@ -89,7 +89,7 @@ const NewTransactionModal: React.FC<NewTransactionModalProps> = ({
         <input
           type="text"
           value={value}
-          onChange={(e) => setValue(Number(e.target.value))}
+          onChange={(e) => setValue(e.target.value)}
           placeholder="Valor"
           className="px-4 py-4 mt-4 text-sm text-gray-500 bg-gray-200 rounded-lg outline outline-1 outline-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 placeholder-slate-400g"
         />
